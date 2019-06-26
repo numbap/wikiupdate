@@ -3,10 +3,6 @@ const request = require('request')
 
 const pullPage = async (url) => {
     return await fetch(url).then(res => res.json()).then(body => body);
-    // return fetch(url).then((res) => {
-    //    console.log(res.text())
-    //    return res
-    // }).catch(x => 'Error');
 }
 
 
@@ -37,34 +33,6 @@ const latestupdates = async (callback) => {
     // .reduce((a = [], b) => a.push(b))
     callback( Object.keys(response2).map(key => response2[key]) )
 
-    // callback('ssss')
-
-
-
-    // request({ url: newUrl, json: true }, (error, result) => {
-    //     if (error) {
-    //         callback('Unable to connect to services!', error)
-    //     } else {
-    //         let ffff = splitPageIds(result.body.query.recentchanges, 50).map(x => pullPageUrl + x)
-    //         ffff.map(x => pullPage(x))
-    //         console.log(pullPage(ffff[1].trim().toString()))
-    //         callback(ffff[1])
-    //     }
-    // })
-
-
-    // request({ url: newUrl, json: true }, (error, result) => {
-    //     if (error) {
-    //         callback('Unable to connect to services!', error)
-    //     } else {
-    //         let ffff = splitPageIds(result.body.query.recentchanges, 50).map(x => pullPageUrl + x)
-    //         ffff.map(x => pullPage(x))
-    //         request({ url: ffff[1], json: true }).then(c => console.log(x))
-    //         console.log(pullPage(ffff[1].trim().toString()))
-    //         callback(ffff[1])
-    //     }
-    // })
-
 }
 
 
@@ -78,17 +46,6 @@ splitPageIds = (pageIdArray = [], blockSize = 50) => {
     }
    return urlPageVars
 }
-
-// pageIdToRequestJson = (url = '') => {
-//     return request({ url: url, json: true }, (error, result) => {
-//         if (error) {
-//             return 'Unable to connect to services!'
-//         } else {
-//             return result
-//         }
-//     })
-// } 
-
 
 async function getBlock() {
     let jsonBlocks;
@@ -107,26 +64,3 @@ async function getBlock() {
 
 
 module.exports = latestupdates
-
-
-
-
-
-                // allPages = request({ url: pullPageUrl + n, json: true }, (error, result, body) => {
-                //     if (error) {
-                //         return 'Unable to connect to services!'
-                //     } else {
-                //         return 'body.toString()' 
-                //     }
-                // })
-
-                // return allPages
-
-
-
-                // return pullPageUrl + n
-                // f = fetch.fetchUrl(pullPageUrl + n).then((response) => {
-                //     response.json().then((data) => {
-                //         return data
-                //     })
-                // })
