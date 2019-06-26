@@ -10,7 +10,7 @@ weatherForm.addEventListener('click', (e) => {
 
     messageOne.textContent = 'Loading...'
 
-    fetch('http://localhost:3000/page').then((response) => {
+    fetch('/page').then((response) => {
         response.json().then((data) => {
             if (data.error) {
                 console.log('sssss')
