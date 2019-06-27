@@ -14,12 +14,6 @@ weatherForm.addEventListener('click', (e) => {
         response.json().then((data) => {
             if (data.error) {
                 console.log('sssss')
-
-                
-                // messageOne.textContent = 'data.error.length'
-
-                //messageOne.textContent = `${data.error.map(function(){
-                //    return 'Hello' }).join('') }<h3>ffffff</h3>`
                     messageOne.innerHTML = data.error.map(function(x) { 
                         
                         if(x.thumbnail){
@@ -29,20 +23,17 @@ weatherForm.addEventListener('click', (e) => {
                         }
                         console.log(x.thumbnail)
                         if(x.title && x.extract) { return `
-                    <div class="col-md-12">
-                    <h3><a href='http://en.wikipedia.org/?curid=${x.pageid}' target="_blank">${x.title}</a></h3>
-                    <p>${image}${x.extract}</p>
-
-                    <p></p>
+                    <div class="card border-dark mb-3" >
+                        <div class="card-header"><h3><a href='http://en.wikipedia.org/?curid=${x.pageid}' target="_blank">${x.title}</a></h3></div>
+                        <div class="card-body card-text-secondary">
+                        <div class="card-body text-dark">
+                        <p class="card-text">${image}${x.extract}</p>
+                        </div>
+                        </div>
                     </div>
                  `} else { return '' } } ).join('\n') 
 
             } else {
-                // console.log(data)
-                // messageOne.textContent = data.error.forEach(function(x) { '<h3>' + x.title + '</h3>\n<p>' + x.extract + '/p\n' } )
-                // messageOne.textContent = `${data.error.map(function(){
-                //     return 'Hello' }).join('') }<h3>dddddd</h3>`
-
                 messageOne.textContent = data.error
                 console.log(data)
             }
