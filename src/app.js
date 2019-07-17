@@ -1,9 +1,11 @@
+// Load Dependencies
 const path = require('path')
 const fetch = require('node-fetch')
 const express = require('express')
 const hbs = require('hbs')
 const latestupdates = require('./utils/latestupdates')
 
+// Initialize Express
 const app = express()
 
 // Define paths for Express config
@@ -17,15 +19,11 @@ app.set('view engine', 'hbs')
 app.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
 
-
-
-
 // Setup static directory to serve
 app.use(express.static(publicDirectoryPath))
 
+// Router for loading the page
 app.get('/page', (req, res) => {
-
-
     latestupdates((error, allresults = {}) => {
         if (error) {
             return res.send({ error })
@@ -34,6 +32,7 @@ app.get('/page', (req, res) => {
     })
 })
 
+// Router for index
 app.get('', (req, res) => {
     res.render('index', {
         title: 'Real-Time Wikipedia Updates Monitor',
@@ -41,8 +40,7 @@ app.get('', (req, res) => {
     })
 })
 
-
-
+// 404 page error handling router
 app.get('*', (req, res) => {
     res.render('404', {
         title: '404',
@@ -52,7 +50,7 @@ app.get('*', (req, res) => {
 })
 
 
-
+// Monitoring port number for debugging purposes
 app.listen( port, () => {
     console.log('Server is up on port ' + port)
 })
